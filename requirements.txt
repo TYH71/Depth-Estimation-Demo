@@ -1,0 +1,8 @@
+numpy
+tensorflow
+glob
+Pillow
+os
+numpy
+matplotlib
+streamlit
