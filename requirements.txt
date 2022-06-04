@@ -1,7 +1,6 @@
 numpy
 tensorflow
 Pillow
-os
 numpy
 matplotlib
 streamlit
