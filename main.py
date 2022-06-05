@@ -12,7 +12,7 @@ def load_model(path: str = "asset/DepthEstimationModel"):
     model = keras.models.load_model(path)
     return model
 
-@st.cache()
+# @st.cache()
 def load_demo_image(path: str = "asset/*.jpg"):
     # Prepare Sample Image Data
     images = []
@@ -23,17 +23,19 @@ def load_demo_image(path: str = "asset/*.jpg"):
 
 if __name__ == '__main__':
     st.title("Monocular Depth Detection")
-    model = load_model()
-    sidebar = st.sidebar
+    st.info("Monocular Depth Estimation is the task of estimating the depth value (distance relative to the camera) of each pixel given a single (monocular) RGB image.")
+    
     col1, col2 = st.columns(2)
     
+    # Sidebar - Receive Input Images
+    sidebar = st.sidebar
     sidebar.header("Upload own Image")
-    file = sidebar.file_uploader("Upload Image", type=["jpg", "png"])
+    file = sidebar.file_uploader("Upload Image", type=["jpg", "png", "jpeg"], accept_multiple_files=False)
     sidebar.header("Demo Images")
     demo = sidebar.button("Demo")
 
     # Load MDE Model
-    model = keras.models.load_model("asset/DepthEstimationModel")
+    model = load_model()
 
     if demo:
         images = load_demo_image()
