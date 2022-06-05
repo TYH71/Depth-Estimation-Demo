@@ -17,7 +17,7 @@ def load_demo_image(path: str = "asset/*.jpg"):
     # Prepare Sample Image Data
     images = []
     for f in glob.glob("./asset/image/*.jpg"):
-        images.append(np.asarray(Image.open(f).resize((256, 256)), dtype=np.float32)/255)
+        images.append(np.asarray(Image.open(f).convert("RGB").resize((256, 256)), dtype=np.float32)/255)
     images = np.array(images) # Shape: (None, 256, 256, 3)
     return images
 
@@ -67,9 +67,9 @@ if __name__ == '__main__':
         
 
     if file:
-        img = Image.open(file).resize((256, 256))
+        img = Image.open(file).convert("RGB").resize((256, 256))
         img = np.asarray(img, dtype=np.float32)/255
-        img = img.reshape(1, 256, 256, -1)
+        img = img.reshape(1, 256, 256, 3)
 
         # Column 1 - Displaying Input Image
         col1.subheader("Input Image")
