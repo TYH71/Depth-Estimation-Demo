@@ -23,7 +23,7 @@ def load_demo_image(path: str = "asset/*.jpg"):
     return images
 
 if __name__ == '__main__':
-    st.title("Monocular Depth Detection")
+    st.title("Monocular Depth Estimation")
     st.info("Monocular Depth Estimation is the task of estimating the depth value (distance relative to the camera) of each pixel given a single (monocular) RGB image.")
     
     col1, col2 = st.columns(2)
