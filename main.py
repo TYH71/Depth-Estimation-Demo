@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from tensorflow import keras 
 from PIL import Image
 import time
+import datetime
 
 # @st.cache()
 def load_model(path: str = "asset/DepthEstimationModel"):
@@ -49,6 +50,7 @@ if __name__ == '__main__':
         # Sample Inference
         img = img.reshape(1, 256, 256, 3)
         col1.write("Running Inference...")
+        print("[{}]".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))) # for logging
         start = time.time()
         pred = model.predict(img) # Shape: (None, 256, 256, 1)
         pred = pred[0].squeeze()
@@ -79,6 +81,7 @@ if __name__ == '__main__':
 
         # Sample Inference
         col1.write("Running Inference...")
+        print("[{}]".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))) # for logging
         start = time.time()
         pred = model.predict(img) # Shape: (None, 256, 256, 1)
         pred = pred[0].squeeze()
