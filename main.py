@@ -31,9 +31,9 @@ if __name__ == '__main__':
     # Sidebar - Receive Input Images
     sidebar = st.sidebar
     sidebar.header("Upload own Image")
-    file = sidebar.file_uploader("Upload Image", type=["jpg", "png", "jpeg"], accept_multiple_files=False)
+    file = sidebar.file_uploader("Upload Image", type=["jpg", "png", "jpeg"], accept_multiple_files=False, on_change=lambda _: print("Timestamp: {}".format(datetime.datetime.now())))
     sidebar.header("Demo Images")
-    demo = sidebar.button("Demo")
+    demo = sidebar.button("Demo", on_click=lambda _: print("Timestamp: {}".format(datetime.datetime.now())))
 
     # Load MDE Model
     model = load_model()
