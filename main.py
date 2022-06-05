@@ -12,7 +12,7 @@ def load_model(path: str = "asset/DepthEstimationModel"):
     model = keras.models.load_model(path)
     return model
 
-# @st.cache()
+@st.cache()
 def load_demo_image(path: str = "asset/*.jpg"):
     # Prepare Sample Image Data
     images = []
@@ -66,11 +66,10 @@ if __name__ == '__main__':
         col2.write("Inference Time: {:.3f}s".format(inference_time))
         
 
-    # file = st.file_uploader("Upload an Image")
     if file:
         img = Image.open(file).resize((256, 256))
         img = np.asarray(img, dtype=np.float32)/255
-        img = img.reshape(1, 256, 256, 3)
+        img = img.reshape(1, 256, 256, -1)
 
         # Column 1 - Displaying Input Image
         col1.subheader("Input Image")
