@@ -9,7 +9,7 @@ import time
 import datetime
 
 # @st.cache()
-def load_model(path: str = "asset/DepthEstimationModel"):
+def load_model(path: str = "asset/MDE_256x256_0004_50_16"):
     model = keras.models.load_model(path)
     return model
 
