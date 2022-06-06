@@ -11,12 +11,12 @@ import datetime
 HEIGHT = 256
 WIDTH = 256
 
-# @st.cache()
+@st.cache
 def load_model(path: str = "asset/MDE_256x256_50_16"):
     model = keras.models.load_model(path)
     return model
 
-# @st.cache()
+@st.cache
 def load_demo_image(path: str = "asset/*.jpg"):
     # Prepare Sample Image Data
     images = []
