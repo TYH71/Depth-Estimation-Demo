@@ -8,8 +8,11 @@ from PIL import Image
 import time
 import datetime
 
+HEIGHT = 256
+WIDTH = 256
+
 # @st.cache()
-def load_model(path: str = "asset/MDE_512x512_30_8"):
+def load_model(path: str = "asset/MDE_256x256_50_16"):
     model = keras.models.load_model(path)
     return model
 
@@ -18,7 +21,7 @@ def load_demo_image(path: str = "asset/*.jpg"):
     # Prepare Sample Image Data
     images = []
     for f in glob.glob("./asset/image/*.jpg"):
-        images.append(np.asarray(Image.open(f).convert("RGB").resize((512, 512)), dtype=np.float32)/255)
+        images.append(np.asarray(Image.open(f).convert("RGB").resize((HEIGHT, WIDTH)), dtype=np.float32)/255)
     images = np.array(images) # Shape: (None, 512, 512, 3)
     return images
 
@@ -48,7 +51,7 @@ if __name__ == '__main__':
         col1.image(img, use_column_width=True)
 
         # Sample Inference
-        img = img.reshape(1, 512, 512, 3)
+        img = img.reshape(1, HEIGHT, WIDTH, 3)
         col1.write("Running Inference...")
         print("[{}]".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))) # for logging
         start = time.time()
@@ -71,9 +74,9 @@ if __name__ == '__main__':
         
 
     if file:
-        img = Image.open(file).convert("RGB").resize((512, 512))
+        img = Image.open(file).convert("RGB").resize((HEIGHT, WIDTH))
         img = np.asarray(img, dtype=np.float32)/255
-        img = img.reshape(1, 512, 512, 3)
+        img = img.reshape(1, HEIGHT, WIDTH, 3)
 
         # Column 1 - Displaying Input Image
         col1.subheader("Input Image")
