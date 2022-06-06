@@ -11,7 +11,7 @@ import datetime
 HEIGHT = 256
 WIDTH = 256
 
-@st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
+@st.cache(hash_funcs={"MyUnhashableClass": lambda _: None}, allow_output_mutation=True)
 def load_model(path: str = "asset/MDE_256x256_50_16"):
     model = keras.models.load_model(path)
     return model
